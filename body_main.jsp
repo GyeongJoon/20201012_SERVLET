@@ -22,7 +22,7 @@
   </div>
   </div>
 <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-action active "aria-current="true">Red Wine</a>
+      <a href="#" class="list-group-item list-group-item-action active" aria-current="true">Red Wine</a>
         1) 시라(Syrah) / 쉬라즈(Shiraz)<br>
         2) 말벡(Malbec)<br>
         3) 네비올로 (Nebbiolo)<br>
@@ -33,6 +33,15 @@
         8) 템프라니요(Tempranillo)<br>
         9) 피노 누아(Pinot Noir)<br>
         10) 가메 (Gamay)
-      <a href="#" class="list-group-item list-group-item-action">White Wine</a>
+      <a href="#" class="list-group-item list-group-item-action" >White Wine</a>
+    1) 샤르도네(Chardonnay) = 샤도네이<br>
+    2) 세미용(Semilion)<br>
+    3) 리슬링(Riesling)<br>
+    5) 슈냉블랑(Chenin Blanc)<br>
+    6) 모스카토(Moscato) = 뮈스카(Muscat)<br>
+    7) 피노그리(Pinot Gris)<br>
+    8) 비오니에(Viognier)<br>
+    9) 그뤼너 펠트리너(Gruner Veltliner)<br>
+    10) 게뷔르츠트라미너(Gewurztraminer)
       <a href="#" class="list-group-item list-group-item-action">Rose Wine</a> 
     </div>
