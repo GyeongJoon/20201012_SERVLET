@@ -3,7 +3,20 @@ import java.util.ArrayList;
 import dto.Product;
 
 public class ProductRepository {
+    
+    public Product getProductById(String productId) {
+		Product productById = null;
 
+		for (int i = 0; i < listOfProducts.size(); i++) {
+			Product product = listOfProducts.get(i);
+			if (product != null && product.getProductId() != null && product.getProductId().equals(productId)) {
+				productById = product;
+				break;
+			}
+		}
+		return productById;
+	}
+    
 	private ArrayList<Product> listOfProducts = new ArrayList<Product>(); // ArrayList를 Product로 캐스팅
 
 	public ProductRepository() {
@@ -28,42 +41,42 @@ public class ProductRepository {
 		tablet.setUnitsInStock(1000);
 		tablet.setCondition("Old");
         
-        Product tablet1 = new Product("P1236", "쇼비뇽 블랑", 900000);
+        Product tablet1 = new Product("P1237", "쇼비뇽 블랑", 900000);
 		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
 		tablet.setCategory("white wine");
 		tablet.setManufacturer("Samsung");
 		tablet.setUnitsInStock(1000);
 		tablet.setCondition("Old");
         
-        Product tablet2 = new Product("P1236", "샤르 도네", 900000);
+        Product tablet2 = new Product("P1238", "샤르 도네", 900000);
 		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
 		tablet.setCategory("white wine");
 		tablet.setManufacturer("wine");
 		tablet.setUnitsInStock(1000);
 		tablet.setCondition("Old");
         
-        Product tablet3 = new Product("P1236", "리슬링", 900000);
+        Product tablet3 = new Product("P1239", "리슬링", 900000);
 		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
 		tablet.setCategory("white wine");
 		tablet.setManufacturer("wine");
 		tablet.setUnitsInStock(1000);
 		tablet.setCondition("Old");
         
-        Product tablet4 = new Product("P1236", "파스쿠아 스윗 로제", 900000);
+        Product tablet4 = new Product("P1240", "파스쿠아 스윗 로제", 900000);
 		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
 		tablet.setCategory("rose wine");
 		tablet.setManufacturer("wine");
 		tablet.setUnitsInStock(1000);
 		tablet.setCondition("Old");
         
-        Product tablet5 = new Product("P1236", "로제 봉봉", 80000);
+        Product tablet5 = new Product("P1241", "로제 봉봉", 80000);
 		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
 		tablet.setCategory("rose wine");
 		tablet.setManufacturer("wine");
 		tablet.setUnitsInStock(1000);
 		tablet.setCondition("Old");
         
-        Product tablet6 = new Product("P1236", "간치아 모스카토 로제", 90000);
+        Product tablet6 = new Product("P1242", "간치아 모스카토 로제", 90000);
 		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
 		tablet.setCategory("rose wine");
 		tablet.setManufacturer("wine");
