@@ -32,6 +32,7 @@
 			<div class="col-md-4">
                 <div class="card bg-dark text-white">
                         <img src="image/product/<%=product.getProductId()%>.jpg" class="card-img" alt="...">
+                        
                         <div class="card-img-overlay">
                         <h5 class="card-title">red wine 이미지 샘플</h5>
                         <p class="card-text">출처 : 구글 검색</p>
