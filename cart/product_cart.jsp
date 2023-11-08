@@ -12,7 +12,7 @@
     <script type ="text/javascript" src ="../js/validation.js"></script>
 
 <%
-	String cartId = session.getId(); // 세션 정보 얻기...
+	String cartId = session.getId(); // 세션 정보 얻기.
 %>
 <title>장바구니</title>
 </head>
