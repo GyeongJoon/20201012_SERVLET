@@ -29,7 +29,7 @@
 	<div class="container">
 		<div class="row" align="center">
                 <%
-                String sql = "select * from product"; // 조회
+                String sql = "select * from product"; // 조회..
                 pstmt = conn.prepareStatement(sql); // 연결 생성
                 rs = pstmt.executeQuery(); // 쿼리 실행
                 while (rs.next()) { // 결과 ResultSet 객체 반복
