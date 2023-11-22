@@ -2,6 +2,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Product"%>
 <%@ page errorPage = "exception/main_server_downtime.jsp" %>
+<%@ page import="dao.ProductRepository"%>
 <%@ page import="java.sql.*"%>
 <%@ include file="db/db_conn.jsp"%>
 
@@ -29,10 +30,10 @@
 	<div class="container">
 		<div class="row" align="center">
                 <%
-                String sql = "select * from product"; // 조회..
-                pstmt = conn.prepareStatement(sql); // 연결 생성
-                rs = pstmt.executeQuery(); // 쿼리 실행
-                while (rs.next()) { // 결과 ResultSet 객체 반복
+                        String sql = "select * from product"; // 조회..
+                        pstmt = conn.prepareStatement(sql); // 연결 생성
+                        rs = pstmt.executeQuery(); // 쿼리 실행
+                        while (rs.next()) { // 결과 ResultSet 객체 반복
                 %>
 
 			<div class="col-md-4">
@@ -50,15 +51,15 @@
                 <p><a href="product_detail.jsp?id=<%=rs.getString("p_id")%>" class="btn btn-secondary" role="button"> 상세 정보 &raquo;></a>
 
 			</div>
- 	<%
-             }// 반복문 끝난 이후 db 연결 종료	
-		if (rs != null)
-			rs.close();
- 		if (pstmt != null)
- 			pstmt.close();
- 		if (conn != null)
-			conn.close();
-	%>
+        <%
+                 }// 반복문 끝난 이후 db 연결 종료	
+            if (rs != null)
+                rs.close();
+            if (pstmt != null)
+                pstmt.close();
+            if (conn != null)
+                conn.close();
+        %>
 
 		</div>
 		<hr>

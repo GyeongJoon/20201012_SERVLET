@@ -57,7 +57,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2">재고 수</label>
 				<div class="col-sm-3">
-					<input type="text" id="unitslnStock" name="unitsInStock" class="form-control" >
+					<input type="text" id="unitsInStock" name="unitsInStock" class="form-control" >
 				</div>
 			</div>
 			<div class="form-group row">
