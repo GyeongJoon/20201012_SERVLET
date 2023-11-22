@@ -37,46 +37,47 @@
 	String fname = (String) files.nextElement();
 	String fileName = multi.getFilesystemName(fname);	
 
-	String sql = "select * from product where p_id = ?";
+	String sql = "delete from product where p_id = ? ";
 	pstmt = conn.prepareStatement(sql);
 	pstmt.setString(1, productId);
-	rs = pstmt.executeQuery();
+	int affectedRows = pstmt.executeUpdate();
 
-	if (rs.next()) {
-	   if (fileName != null) {
-	      sql = "delete from product where p_id = ? ";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, name);
-		pstmt.setInt(2, price);
-		pstmt.setString(3, description);
-		pstmt.setString(4, manufacturer);
-		pstmt.setString(5, category);
-		pstmt.setString(6, unitsInStock); // setLong과 stock (테이블 데이터형에 맞게 적용)
-		pstmt.setString(7, condition);
-		pstmt.setString(8, fileName);
-		pstmt.setString(9, productId);
-		pstmt.executeUpdate();
-	   }
-	else {
-    	     sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, p_manufacturer=?, p_category=?, p_unitsInStock=?, p_condition=? WHERE p_id=?";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, name);
-		pstmt.setInt(2, price);
-		pstmt.setString(3, description);
-		pstmt.setString(4, manufacturer);
-		pstmt.setString(5, category);
-		pstmt.setString(6, unitsInStock); // setLong과 stock (테이블 데이터형에 맞게 적용)
-		pstmt.setString(7, condition);
-		pstmt.setString(8, productId);
-		pstmt.executeUpdate();
-	}
-	}
-	if (rs != null)
-		rs.close();
-	if (pstmt != null)
-		pstmt.close();
-	if (conn != null)
-		conn.close();
+
+	// if (rs.next()) {
+	//    if (fileName != null) {
+	//       sql = "delete from product where p_id = ? ";
+	// 	pstmt = conn.prepareStatement(sql);
+	// 	pstmt.setString(1, name);
+	// 	pstmt.setInt(2, price);
+	// 	pstmt.setString(3, description);
+	// 	pstmt.setString(4, manufacturer);
+	// 	pstmt.setString(5, category);
+	// 	pstmt.setString(6, unitsInStock); // setLong과 stock (테이블 데이터형에 맞게 적용)
+	// 	pstmt.setString(7, condition);
+	// 	pstmt.setString(8, fileName);
+	// 	pstmt.setString(9, productId);
+	//     pstmt.executeUpdate();
+	//    }
+	// else {
+	// sql = "delete from product where p_id = ? ";
+	// 	pstmt = conn.prepareStatement(sql);
+	// 	pstmt.setString(1, name);
+	// 	pstmt.setInt(2, price);
+	// 	pstmt.setString(3, description);
+	// 	pstmt.setString(4, manufacturer);
+	// 	pstmt.setString(5, category);
+	// 	pstmt.setString(6, unitsInStock); // setLong과 stock (테이블 데이터형에 맞게 적용)
+	// 	pstmt.setString(7, condition);
+	// 	pstmt.setString(8, productId);
+	//     pstmt.executeUpdate();
+	// }
+	// }
+	// if (rs != null)
+	// 	rs.close();
+	// if (pstmt != null)
+	// 	pstmt.close();
+	// if (conn != null)
+	// 	conn.close();
 
 	response.sendRedirect("product_edit.jsp?edit=update");
 %>
