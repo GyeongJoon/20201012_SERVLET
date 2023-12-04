@@ -1,8 +1,9 @@
-<%@ page contentType = "text/html; charset=utf-8" %>
-<%@ page import="example.*" %>
-<%@ page import="java.util.Date" %>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page import="com.oreilly.servlet.*"%>
+<%@ page import="com.oreilly.servlet.multipart.*"%>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.sql.*"%>
 <%@ page import="java.time.LocalDate" %>
-<%@ page buffer="1kb" autoFlush="true"%>
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -35,31 +36,31 @@
 	    <div class="form-group row">
 		<label class="col-sm-2">아이디</label>
 		<div class="col-sm-3">
-			<input type="text" id="id" name="id" class="form-control" value='<%=rs.getString("id")%>' readonly>
+			<input type="text" id="id_<%=rs.getString("id")%>" name="id" class="form-control" value='<%=rs.getString("id")%>' readonly>
 		</div>
 	    </div>
 	    <div class="form-group row">
 		<label class="col-sm-2">패스워드</label>
 		<div class="col-sm-3">
-			<input type="password" id="password" name="password" class="form-control" value="<%=rs.getString("password")%>">
+			<input type="password" id="<%=rs.getString("id")%>" name="password" class="form-control" value="<%=rs.getString("password")%>">
 		</div>
 	    </div>
 	    <div class="form-group row">
 		<label class="col-sm-2">패스워드 재입력</label>
 		<div class="col-sm-3">
-			<input type="password" id="password_re" name="password_re" class="form-control" value="<%=rs.getString("password")%>">
+			<input type="password" id="<%=rs.getString("id")%>" name="password" class="form-control" value="<%=rs.getString("password")%>">
 		</div>
 	    </div>
 	    <div class="form-group row">
 		<label class="col-sm-2">이름</label>
 		<div class="col-sm-5">
-			<input type="text" id="name" name="name" class="form-control" value="<%=rs.getString("name")%>">
+			<input type="text" id="<%=rs.getString("id")%>" name="name" class="form-control" value="<%=rs.getString("name")%>">
 		</div>
 	    </div>
 	    <div class="form-group row">
 		<label class="col-sm-2">생일</label>
 		<div class="col-sm-3">
-			<input type="date" id="birth" name="birth" class="form-control" value="<%=rs.getString("birth")%>">
+			<input type="date" id="<%=rs.getString("id")%>" name="birth" class="form-control" value="<%=rs.getString("birth")%>">
 		</div>
 	    </div>
 	    <div class="form-group row">
@@ -74,19 +75,19 @@
 	    <div class="form-group row">
 			<label class="col-sm-2">메일주소</label>
 			<div class="col-sm-3">
-				<input type="email" id="mail" name="mail" class="form-control" placeholder="abcabc123@naver.com" value="<%=rs.getString("email")%>">
+				<input type="email" id="<%=rs.getString("id")%>" name="mail" class="form-control" placeholder="abcabc123@naver.com" value="<%=rs.getString("email")%>">
 			</div>
 	    </div>
 	    <div class="form-group row">
 			<label class="col-sm-2">폰 번호</label>
 			<div class="col-sm-3">
-				<input type="tel" id="phone" name="phone" class="form-control" value="<%=rs.getString("phone")%>">
+				<input type="tel" id="<%=rs.getString("id")%>" name="phone" class="form-control" value="<%=rs.getString("phone")%>">
 			</div>
 	    </div>
 	    <div class="form-group row">
 			<label class="col-sm-2">우편번호</label>
 			<div class="col-sm-3">
-				<input type="text" id="address" name="address" class="form-control" value="<%=rs.getString("address")%>">
+				<input type="text" id="<%=rs.getString("id")%>" name="address" class="form-control" value="<%=rs.getString("address")%>">
 			</div>
 	    </div>
 	    <div class="form-group row">
@@ -98,16 +99,17 @@
         </div>
    </div>
 </div>
-<%
-    }
-    if (rs != null)
-        rs.close();
-    if (pstmt != null)
-        pstmt.close();
-    if (conn != null)
-        conn.close();
+    <%
+	}
+	if (rs != null)
+		rs.close();
+		if (pstmt != null)
+			pstmt.close();
+	if (conn != null)
+		conn.close();
  %>
  <hr>
  <jsp:include page="../admin/footer_ad.jsp" />
 </body>
 </html>
+
