@@ -48,7 +48,7 @@
 
   #### 6. <연습문제>오류 수정하기(장바구니 페이지 상단 로그 이미지)
   ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/5a627059-2779-4197-a855-745abc0750b5)
-  #### 7. <연습문제>오류 수정하기(세션 전체 삭제 -> 뒤로 가기 한 후 -> 특정 상품 선택 삭제 오류) 수정 완료
+  #### 7. <연습문제>오류 수정하기(세션 전체 삭제 -> 뒤로 가기 한 후 -> 특정 상품 선택 삭제 오류) 수정 O
   #### 8. <연습문제>오류 수정하기(관리자 페이지의 상세 페이지)
   ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/83bacaa7-c218-46f5-91ce-00c7f20d39a0)
 
@@ -56,8 +56,14 @@
 ## 11월 8일: 쇼핑몰 주문 처리 페이지 추가
   #### 1. 주문 처리 페이지 생성(쿠키 내장 객체 사용)
   #### 2. <연습문제> 배송일을 날짜를 선택하여 입력하도록 수정
+  ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/3b1d6b44-dadf-4807-a83f-f25d31d635a5)
   #### 3. <연습문제> 국가명을 SELECT 박스로 수정
+  ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/d161a81e-53c0-4b35-9fa6-35f2b4b5a5ed)
   #### 4. <연습문제> https://postcode.map.daum.net/guide (카카오 api)를 이용하여 우편번호,주소 입력
+  ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/b3da0b6a-2ffa-4251-874b-4547c115bc10)
+
+  
+  
   
 ## 11월 15일: 쇼핑몰 상품 관리 페이지 추가
   #### 1. 깃 허브 소스코드 업로드(Jsp_20201012 생성)
