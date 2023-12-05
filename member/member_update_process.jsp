@@ -22,15 +22,15 @@
 
     // DB 연동
 
-    String selectSql = "select * from member where id = ?";
-    pstmt = conn.prepareStatement(selectSql);
+    String sql = "select * from member where id = ?";
+    pstmt = conn.prepareStatement(sql);
     pstmt.setString(1, id);
     rs = pstmt.executeQuery();
 
     if (rs.next()) {
         // 회원 정보가 있으면 업데이트
-        String updateSql = "UPDATE member SET password=?, name=?, gender=?, birth=?, mail=?, phone=?, address=? WHERE id=?";
-        pstmt = conn.prepareStatement(updateSql);
+        sql = "UPDATE member SET password=?, name=?, gender=?, birth=?, mail=?, phone=?, address=? WHERE id=?";
+        pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, password);
         pstmt.setString(2, name);
         pstmt.setString(3, gender);
@@ -39,13 +39,12 @@
         pstmt.setString(6, phone);
         pstmt.setString(7, address);
         pstmt.setString(8, id);  // 기존 회원 수정 시에는 id를 설정
-        System.out.println("Update SQL: " + pstmt.toString());
         pstmt.executeUpdate();
     } else {
         // 회원 정보가 없으면 새로 추가
         if (id != null && !id.isEmpty()) {  // id가 비어 있지 않은 경우에만 추가
-            String insertSql = "INSERT INTO member VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            pstmt = conn.prepareStatement(insertSql);
+            sql = "INSERT INTO member VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             pstmt.setString(2, password);
             pstmt.setString(3, name);

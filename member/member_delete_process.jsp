@@ -21,8 +21,8 @@
     LocalDate _regist_day = LocalDate.now();
     String  regist_day = String.valueOf(_regist_day);
 
-    String selectSql = "delete from member where id = ?";
-    pstmt = conn.prepareStatement(selectSql);
+    String sql = "delete from member where id = ?";
+    pstmt = conn.prepareStatement(sql);
     pstmt.setString(1, id);
     int affectedRows = pstmt.executeUpdate();
 

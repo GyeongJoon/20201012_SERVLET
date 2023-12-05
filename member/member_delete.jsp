@@ -1,105 +1,39 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="com.oreilly.servlet.*"%>
-<%@ page import="com.oreilly.servlet.multipart.*"%>
-<%@ page import="java.util.Enumeration" %>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="java.time.LocalDate" %>
-<html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <title>회원 삭제</title>
-</head>
-<body>
-   <jsp:include page="../admin/top_menu_ad.jsp" />
-   <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">회원 삭제</h1>
-        </div>
-   </div>
-   <%@ include file="../db/db_conn.jsp"%>
-                <%
-                    String sql = "select * from member"; // 조회..
-                    pstmt = conn.prepareStatement(sql); // 연결 생성
-                    rs = pstmt.executeQuery(); // 쿼리 실행
-                    while (rs.next()) { // 결과 ResultSet 객체 반복
-                %>
-<div class="container">
-      <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <form name="newProduct" action="member_delete_process.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
-	    <div class="form-group row">
-		<label class="col-sm-2">아이디</label>
-		<div class="col-sm-3">
-			<input type="text" id="id" name="id" class="form-control" value='<%=rs.getString("id")%>' readonly>
-		</div>
-	    </div>
-	    <div class="form-group row">
-		<label class="col-sm-2">패스워드</label>
-		<div class="col-sm-3">
-			<input type="password" id="password" name="password" class="form-control" value="<%=rs.getString("password")%>">
-		</div>
-        </div>
-	    <div class="form-group row">
-		<label class="col-sm-2">이름</label>
-		<div class="col-sm-5">
-			<input type="text" id="name" name="name" class="form-control" value="<%=rs.getString("name")%>">
-		</div>
-	    </div>
-	    <div class="form-group row">
-		<label class="col-sm-2">생일</label>
-		<div class="col-sm-3">
-			<input type="date" id="birth" name="birth" class="form-control" value="<%=rs.getString("birth")%>">
-		</div>
-	    </div>
-	    <div class="form-group row">
-			<label class="col-sm-2">성별</label>
-			<div class="col-sm-3">
-				<select id="gender" name="gender" class="form-control">
-					<option value="남자" <%= rs.getString("gender").equals("남자") ? "selected" : "" %>>남자</option>
-					<option value="여자" <%= rs.getString("gender").equals("여자") ? "selected" : "" %>>여자</option>
-				</select>
-			</div>
-		</div>
-	    <div class="form-group row">
-			<label class="col-sm-2">메일주소</label>
-			<div class="col-sm-3">
-				<input type="email" id="mail" name="mail" class="form-control" placeholder="abcabc123@naver.com" value="<%=rs.getString("mail")%>">
-			</div>
-	    </div>
-	    <div class="form-group row">
-			<label class="col-sm-2">폰 번호</label>
-			<div class="col-sm-3">
-				<input type="tel" id="phone" name="phone" class="form-control" value="<%=rs.getString("phone")%>">
-			</div>
-	    </div>
-	    <div class="form-group row">
-			<label class="col-sm-2">우편번호</label>
-			<div class="col-sm-3">
-				<input type="text" id="address" name="address" class="form-control" value="<%=rs.getString("address")%>">
-			</div>
-	    </div>
-	    <div class="form-group row">
-		<div class="col-sm-offset-2 col-sm-10">
-			<input type="submit" class="btn btn-primary" value="삭제">
-		</div>
-	    </div>
-                </form>
-        </div>
-   </div>
-</div>
-    <%
-	}
-	if (rs != null)
-		rs.close();
-		if (pstmt != null)
-			pstmt.close();
-	if (conn != null)
-		conn.close();
- %>
- <hr>
- <jsp:include page="../admin/footer_ad.jsp" />
-</body>
-</html>
+
+<%@ include file="../db/db_conn.jsp"%>
+
+<%
+    String id = request.getParameter("id");
+
+    try {
+        // 삭제 쿼리
+        String deleteSql = "DELETE FROM member WHERE id = ?";
+        PreparedStatement deletePstmt = conn.prepareStatement(deleteSql);
+        deletePstmt.setString(1, id);
+
+        // 실행
+        int affectedRows = deletePstmt.executeUpdate();
+
+        // 삭제가 성공한 경우
+        if (affectedRows > 0) {
+            response.sendRedirect("member_view.jsp?edit=delete");
+        } else {
+            // 삭제 실패
+            out.println("회원 삭제 실패했습니다.");
+        }
+
+        // 자원 해제
+        if (deletePstmt != null) {
+            deletePstmt.close();
+        }
+
+    } catch (SQLException ex) {
+        out.println("SQL Exception: " + ex.getMessage());
+    } finally {
+        // 최종적으로 연결을 닫아줍니다.
+        if (conn != null) {
+            conn.close();
+        }
+    }
+%>
