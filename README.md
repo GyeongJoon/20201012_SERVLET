@@ -86,10 +86,11 @@
   ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/5bc5ad97-b15f-486d-b82a-35ad67503611)
   ### 2.<연습문제>회원가입
   ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/661e344b-230a-4c71-879f-0d5de177041e)
-  ### 3.<연습문제>회원수정
-  
+  ### 3.<연습문제>회원수정 ex)이름:장경준 -> 최도현
+  ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/8031ab6f-f2eb-4805-9e28-4a924843489b)
   ### 4.<연습문제>회원삭제
-  
+  ![image](https://github.com/GyeongJoon/20201012_SERVET/assets/144195628/c678c3b0-2238-46e4-a5f9-9bc197d1d592)
+
 ### 12월 4일: 쇼핑몰 기능 추가 및 수정(1)
 ### 12월 5일: 쇼핑몰 기능 추가 및 수정(2)
 
