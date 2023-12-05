@@ -5,8 +5,10 @@
 <%@ page import="java.sql.*"%>
 <%@ include file="../db/db_conn.jsp" %>
 <%@ page import="java.time.LocalDate" %>
-<%@ include file="../db/db_conn.jsp" %>
 <%
+    // 앞에서 id 받아오기
+    request.setCharacterEncoding("UTF-8");
+
     String id = request.getParameter("id");
     String password = request.getParameter("password");
     String name = request.getParameter("name");
@@ -15,46 +17,60 @@
     String mail = request.getParameter("mail");
     String phone = request.getParameter("phone");
     String address = request.getParameter("address");
+    LocalDate _regist_day = LocalDate.now();
+    String  regist_day = String.valueOf(_regist_day);
 
     // DB 연동
 
-    String sql = "select * from member where id = ?";
-	pstmt = conn.prepareStatement(sql);
-	pstmt.setString(1, productId);
-	rs = pstmt.executeQuery();
+    String selectSql = "select * from member where id = ?";
+    pstmt = conn.prepareStatement(selectSql);
+    pstmt.setString(1, id);
+    rs = pstmt.executeQuery();
 
     if (rs.next()) {
-    String sql = "UPDATE member SET p_password=?, p_name=?, p_gender=?, p_birth=?, p_mail=?, p_phone=?, p_address=? WHERE id=?";
-    pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1, password);
-    pstmt.setString(2, name);
-    pstmt.setString(3, gender);
-    pstmt.setString(4, birth);
-    pstmt.setString(5, mail);
-    pstmt.setString(6, phone);
-    pstmt.setString(7, address);
-    pstmt.setString(8, id);
-    pstmt.executeUpdate();
+        // 회원 정보가 있으면 업데이트
+        String updateSql = "UPDATE member SET password=?, name=?, gender=?, birth=?, mail=?, phone=?, address=? WHERE id=?";
+        pstmt = conn.prepareStatement(updateSql);
+        pstmt.setString(1, password);
+        pstmt.setString(2, name);
+        pstmt.setString(3, gender);
+        pstmt.setString(4, birth);
+        pstmt.setString(5, mail);
+        pstmt.setString(6, phone);
+        pstmt.setString(7, address);
+        pstmt.setString(8, id);  // 기존 회원 수정 시에는 id를 설정
+        System.out.println("Update SQL: " + pstmt.toString());
+        pstmt.executeUpdate();
+    } else {
+        // 회원 정보가 없으면 새로 추가
+        if (id != null && !id.isEmpty()) {  // id가 비어 있지 않은 경우에만 추가
+            String insertSql = "INSERT INTO member VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            pstmt = conn.prepareStatement(insertSql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, password);
+            pstmt.setString(3, name);
+            pstmt.setString(4, gender);
+            pstmt.setString(5, birth);
+            pstmt.setString(6, mail);
+            pstmt.setString(7, phone);
+            pstmt.setString(8, address);
+            pstmt.executeUpdate();
+        }
     }
-    else {
-    String sql = "UPDATE member SET p_password=?, p_name=?, p_gender=?, p_birth=?, p_mail=?, p_phone=?, p_address=? WHERE id=?";
-    pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1, password);
-    pstmt.setString(2, name);
-    pstmt.setString(3, gender);
-    pstmt.setString(4, birth);
-    pstmt.setString(5, mail);
-    pstmt.setString(6, phone);
-    pstmt.setString(7, address);
-    pstmt.setString(8, id);
-    pstmt.executeUpdate();
-    }
-    if (rs != null)
-		rs.close();
-    if (pstmt != null)
-        pstmt.close();
-    if (conn != null)
-        conn.close();
 
-    response.sendRedirect("./index_ad.jsp");
+    if (rs != null) {
+        rs.close();
+    }
+    if (pstmt != null) {
+        pstmt.close();
+    }
+    if (conn != null) {
+        conn.close();
+    }
+
+    response.sendRedirect("../admin/index_ad.jsp");
+
 %>
+
+
+
